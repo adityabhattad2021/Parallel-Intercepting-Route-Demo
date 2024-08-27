@@ -3,13 +3,15 @@ import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 
 export default function Modal({
-    children
-}:{
-    children:React.ReactNode
+    children,
+    className
+}: {
+    children: React.ReactNode
+    className?:string
 }) {
     const router = useRouter();
 
-    function handleOpenChange(){
+    function handleOpenChange() {
         router.back();
     }
 
@@ -19,11 +21,11 @@ export default function Modal({
             open={true}
             onOpenChange={handleOpenChange}
         >
-            <DialogOverlay>
-                <DialogContent>
-                    {children}
-                </DialogContent>
-            </DialogOverlay>
+            <DialogContent
+                className={className || ""}
+            >
+                {children}
+            </DialogContent>
         </Dialog>
     )
 
